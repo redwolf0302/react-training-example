@@ -1,0 +1,48 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery演示</title>
+        <!-- build:css(.) styles/vendor.css -->
+        <!-- bower:css -->
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+    </head>
+    <body>
+        <!-- 主内容 BEGIN -->
+        <div class="root-container">
+            <h2 class="title"></h2>
+            <div class="row">
+                <div class="list-component">
+                    <div id="actionbar">
+                        <button id='add-article-btn'>添加文章</button>
+                    </div>
+                    <div id="article-list"></div>
+                </div>
+                <div class="form-component">
+                    <input id="subject" placeholder="Please input subject">
+                    <textarea id="memo" rows="10" placeholder="Please input memo"></textarea>
+                    <button id="save-article-btn">保存</button>
+                </div>
+            </div>
+        </div>
+        <!-- 主内容 END -->
+
+        <!-- build:js(.) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/PubSubJS/src/pubsub.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/globals.js"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/listComponent.js"></script>
+        <script src="scripts/formComponent.js"></script>
+        <!-- endbuild -->
+    </body>
+</html>

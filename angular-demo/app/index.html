@@ -1,0 +1,51 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <title>Angular演示</title>
+        <!-- build:css(.) styles/vendor.css -->
+        <!-- bower:css -->
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+    </head>
+    <body ng-app="angular-demo">
+        <!-- 主内容 BEGIN -->
+        <div class="root-container" ng-controller="rootContainerController">
+            <h2 class="title" ng-bind="article_title"></h2>
+            <div class="row">
+                <div class="list-component" ng-controller="listComponentController">
+                    <div id="actionbar">
+                        <button ng-click="createArticle()">添加文章</button>
+                    </div>
+                    <div id="article-list">
+                      <ul ng-if="articleData">
+                        <li ng-repeat="article in articleData track by $index" ng-bind="article.subject" ng-click="articleSelected(article)"></li>
+                      </ul>
+                    </div>
+                </div>
+                <div class="form-component" ng-controller="formComponentController">
+                    <input ng-model="article.subject" placeholder="Please input subject">
+                    <textarea ng-model="article.memo" rows="10" placeholder="Please input memo"></textarea>
+                    <button ng-click="saveArticle()">保存</button>
+                </div>
+            </div>
+        </div>
+        <!-- 主内容 END -->
+
+        <!-- build:js(.) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/angular/angular.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/globals.js"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/listComponent.js"></script>
+        <script src="scripts/formComponent.js"></script>
+        <!-- endbuild -->
+    </body>
+</html>

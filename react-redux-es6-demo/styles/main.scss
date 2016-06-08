@@ -1,0 +1,30 @@
+.root-container {
+  border: 1px solid black;
+  padding: 10px;
+
+  .title {
+    color: red;
+    text-align: center;
+  }
+
+  .row {
+    display: flex;
+    .list-component {
+      flex: 1;
+      border: 1px solid red;
+      padding: 10px;
+    }
+    .form-component {
+      flex: 3;
+      border: 1px solid green;
+      padding: 10px;
+      textarea,
+      input,
+      button {
+        width: 80%;
+        margin-bottom: 10px;
+        padding: 10px;
+      }
+    }
+  }
+}
