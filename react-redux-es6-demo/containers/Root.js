@@ -9,25 +9,21 @@ import {loadArticle} from '../actions/ArticleActions'
 class Root extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			article: {},
-			newArticle: null
-		};
 	}
 
 	componentWillMount() {
-		console.log(this.props);
 		let {dispatch} = this.props;
 		dispatch(loadArticle());//这是一种调用方式
 	}
 
 	render() {
+		let {articles, selectedArticle} = this.props;
 		return (
 			<div className="root-container">
-				<Title/>
+				<Title articleTitle={selectedArticle?selectedArticle.subject:''}/>
 				<div className="row">
-					<ListComponent articles={}/>
-					<FormComponent article={this.state.article}/>
+					<ListComponent articles={articles}/>
+					<FormComponent article={selectedArticle}/>
 				</div>
 			</div>
 		);
@@ -35,7 +31,10 @@ class Root extends React.Component {
 }
 
 function mapStateToProps(state) {
-	return {}
+	return {
+		articles: state.articles.articles,
+		selectedArticle: state.selectArticle.selectedArticle
+	};
 }
 
-export default connect()(Root);
+export default connect(mapStateToProps)(Root);

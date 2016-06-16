@@ -3,23 +3,26 @@
  */
 "use strict";
 import React from 'react'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
 import Form from '../components/Form'
+
+import * as actions from '../actions/ArticleActions'
+
 class FormComponent extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 
-	saveArticleHandler(updatedArticle) {
-		/*var data = this.state.article;
-		 data.subject = this.refs.subject.value;
-		 data.memo = this.refs.memo.value;
-		 PubSub.publish(EVENT_KEYS.DATA_CHANGE, data);*/
+	saveArticleHandler(savedArticle) {
+		let {actions} = this.props;
+		actions.saveArticle(savedArticle);
 	}
 
 	render() {
 		return (<Form article={this.props.article}
-					  saveArticleCallback={this.saveArticleHandler}/>);
+					  saveArticleCallback={this.saveArticleHandler.bind(this)}/>);
 	}
 }
 
@@ -35,4 +38,14 @@ FormComponent.defaultProps = {
 	article: {}
 };
 
-export default FormComponent;
+const mapStateToProps = (state) => {
+	return {}
+};
+
+const mapDispatchToProps = (dispatch)=> {
+	return {
+		actions: bindActionCreators(actions, dispatch)
+	}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormComponent);

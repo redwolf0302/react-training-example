@@ -10,3 +10,23 @@ export function loadArticle() {
 		articles: article_data
 	}
 }
+
+export function selectArticle(selectedArticle) {
+	return {
+		type: ActionTypes.SELECT_ARTICLE,
+		selectedArticle
+	}
+}
+
+export function createArticle() {
+	return {
+		type: ActionTypes.CREATE_ARTICLE
+	}
+}
+
+export function saveArticle(savedArticle) {
+	return {
+		type: ActionTypes.SAVE_ARTICLE,
+		savedArticle
+	}
+}

@@ -4,54 +4,33 @@
 "use strict";
 
 import React from 'react'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
 import List from '../components/List'
 import ActionBar from '../components/ActionBar'
-// import {article_data} from '../globals'
+
+import * as actions from '../actions/ArticleActions'
 
 class ListComponent extends React.Component {
 	constructor(props) {
 		super(props);
-		// this.state = {
-		// 	articleData: []
-		// };
-	}
-
-	componentWillMount() {
-		// this.setState({articleData: article_data});
-	}
-
-	componentWillUpdate(nextProps, nextState) {
-		// var article_data = this.state.articleData;
-		// var data = nextProps.newArticle;
-		// if (data.id) {
-		// 	article_data.forEach(function (item) {
-		// 		if (data.id === item.id) {
-		// 			item.subject = data.subject;
-		// 			item.memo = data.memo;
-		// 		}
-		// 	});
-		// } else {
-		// 	data.id = (new Date()).valueOf();//模拟ID
-		// 	article_data.push(data);
-		// }
-		// this.setState({articleData: article_data});
 	}
 
 	articleSelectedHandler(article) {
-		// PubSub.publish(EVENT_KEYS.LIST_CLICK, article);
+		this.props.actions.selectArticle(article);
 	}
 
 	createArticleHandler() {
-		// PubSub.publish(EVENT_KEYS.LIST_CLICK, {});
+		this.props.actions.createArticle();
 	}
 
 	render() {
 		return (
 			<div className="list-component">
-				<ActionBar createArticleCallback={this.createArticleHandler}/>
-				<List articleData={this.state.articleData}
-					  articleSelectedCallback={this.articleSelectedHandler}/>
+				<ActionBar createArticleCallback={this.createArticleHandler.bind(this)}/>
+				<List articleData={this.props.articles}
+					  articleSelectedCallback={this.articleSelectedHandler.bind(this)}/>
 			</div>
 		);
 	}
@@ -65,4 +44,14 @@ ListComponent.propTypes = {
 	}))
 };
 
-export default ListComponent;
+const mapStateToProps = (state) => {
+	return {articles: state.articles.articles}
+};
+
+const mapDispatchToProps = (dispatch)=> {
+	return {
+		actions: bindActionCreators(actions, dispatch)
+	}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListComponent);

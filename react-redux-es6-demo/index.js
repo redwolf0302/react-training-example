@@ -6,15 +6,12 @@ import 'babel-polyfill'
 import './styles/main.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
-import createLogger from 'redux-logger'
 
-import reducers from './reducers'
+import configureStore from './stores/configureStore'
 import Root from './containers/Root'
 
-let createStoreWithMiddleware = applyMiddleware(createLogger())(createStore);
-let store = createStoreWithMiddleware(reducers);
+let store = configureStore();
 
 let rootContainer = document.getElementById('react-demo');
 ReactDOM.render(
